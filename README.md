@@ -1,8 +1,8 @@
-# Multi-Disease Prediction System
+# Health Guardian AI - Multi-Disease Prediction System
 
-A machine learning-powered web application for early disease risk detection and assessment.
+A machine learning-powered web application for early disease risk detection and assessment with an enhanced, modern user interface.
 
-![Application Screenshot](https://img.freepik.com/free-vector/medical-healthcare-blue-color_1017-26807.jpg)
+![Application Screenshot](https://img.freepik.com/free-photo/medical-banner-with-doctor-working-hospital_23-2149611193.jpg)
 
 ## Table of Contents
 
@@ -12,28 +12,31 @@ A machine learning-powered web application for early disease risk detection and 
 - [Technical Architecture](#technical-architecture)
 - [Installation & Setup](#installation--setup)
 - [Usage Guide](#usage-guide)
+- [UI Enhancements](#ui-enhancements)
 - [Model Performance](#model-performance)
-- [Development Process](#development-process)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
+- [Disclaimer](#disclaimer)
 
 ## Overview
 
-The Multi-Disease Prediction System is an AI-powered tool designed to predict the risk of various diseases based on patient health metrics and symptoms. The application uses machine learning models trained on medical datasets to provide probabilistic risk assessments for diabetes, heart disease, and lung cancer.
+Health Guardian AI is an advanced AI-powered tool designed to predict the risk of various diseases based on patient health metrics, symptoms, and laboratory values. The application features a modern, intuitive user interface and uses trained machine learning models to provide probabilistic risk assessments for multiple conditions including diabetes, heart disease, Parkinson's disease, lung cancer, and thyroid disorders.
 
-This project demonstrates the practical application of machine learning in healthcare for early disease detection and risk assessment, potentially enabling timely intervention and improved patient outcomes.
+This project demonstrates the practical application of machine learning in healthcare for early disease detection and risk assessment, enabling timely intervention and potentially improving patient outcomes.
 
 ## Features
 
-- **User-friendly interface**: Clean, intuitive design optimized for healthcare professionals and individuals
-- **Multiple disease prediction**: Single platform for assessing multiple health conditions
-- **Evidence-based predictions**: Machine learning models trained on established medical datasets
-- **Real-time feedback**: Instant predictions with confidence levels and recommendations
-- **Educational information**: Reference ranges and health information for better context
-- **Accessibility features**: High-contrast design for improved readability
-- **Responsive layout**: Works across desktop and tablet devices
-- **Model diagnostics**: Debug mode for technical users to validate model behavior
+- **Enhanced, modern UI**: Clean, attractive design with medical-themed styling
+- **Multiple disease prediction**: Single platform for assessing five different health conditions
+- **Interactive risk visualization**: Dynamic risk factor display with progress bars and tagging
+- **Educational components**: Expandable sections with medical reference information
+- **Real-time feedback**: Instant predictions with visual results and recommendations
+- **Input validation**: Guided numerical inputs with appropriate ranges
+- **Responsive design**: Optimized layout that works across various screen sizes
+- **Visual category indicators**: BMI categories, risk levels, and other medical indicators
+- **Loading animations**: Visual feedback during prediction processing
+- **Debug options**: Technical tools for troubleshooting model issues
 
 ## Disease Models
 
@@ -62,13 +65,28 @@ Assesses heart disease risk using cardiac health parameters such as:
 - Number of major vessels
 - Thalassemia type
 
+### Parkinson's Disease Prediction
+Evaluates Parkinson's disease risk based on voice analysis metrics:
+- Vocal frequency measurements (Fo, Fhi, Flo)
+- Jitter measurements (variations in frequency)
+- Shimmer measurements (variations in amplitude)
+- Noise-to-harmonics ratios
+- Nonlinear measurements (RPDE, DFA, PPE)
+
 ### Lung Cancer Prediction
 Evaluates lung cancer risk based on symptoms and risk factors including:
 - Smoking history
 - Physical symptoms (coughing, chest pain, etc.)
-- Environmental and genetic factors
-- Lifestyle indicators
+- Environmental and lifestyle factors
 - Pre-existing conditions
+- Age and gender
+
+### Thyroid Function Assessment
+Analyzes thyroid hormone levels to predict hypothyroidism:
+- TSH levels
+- T3 and T4 measurements
+- Patient demographics
+- Current medications
 
 ## Technical Architecture
 
@@ -78,23 +96,30 @@ Evaluates lung cancer risk based on symptoms and risk factors including:
 
 ### Machine Learning Components
 - **scikit-learn**: Model training and evaluation
-- **joblib/pickle**: Model serialization and persistence
+- **pickle**: Model serialization and persistence
 - **pandas/numpy**: Data handling and numerical operations
 
 ### Project Structure
 ```
-Multi-Disease-Prediction/
+HealthGuardianAI/
 │
-├── main4.py               # Main Streamlit application
-├── main3.py               # Alternative Streamlit application
-├── fix_diabetes_model.py  # Utility script for diabetes model
-├── Diabeties.ipynb        # Notebook for diabetes model development
-├── models/                # Directory for trained models
-│   ├── diabetes_model.pkl
-│   ├── heart_model.pkl
-│   └── LungCancer.pkl
-├── diabetes_data.csv      # Dataset for diabetes model
-└── README.md              # Project documentation
+├── app.py                # Enhanced Streamlit application with modern UI
+├── main.py               # Alternative implementation with different styling
+├── main3.py              # Alternative implementation
+├── main4.py              # Original version of the app
+├── fix_diabetes_model.py # Utility script for diabetes model
+├── fix_lung_model.py     # Utility script for lung cancer model
+├── test_lung_model.py    # Test script for lung cancer model
+├── train_lungcancer.py   # Training script for lung cancer model
+├── Diabeties.ipynb       # Notebook for diabetes model development
+├── images/               # Directory for images and icons
+├── Models/               # Directory for trained models
+│   ├── Diabetes.sav
+│   ├── heart_disease_model.sav
+│   ├── parkinsons_model.sav
+│   ├── lungs_disease_model.sav
+│   └── Thyroid_model.sav
+└── README.md             # Project documentation
 ```
 
 ## Installation & Setup
@@ -107,52 +132,87 @@ Multi-Disease-Prediction/
 1. Clone the repository:
    ```
    git clone <repository-url>
-   cd Multi-Disease-Prediction
+   cd HealthGuardianAI
    ```
 
 2. Install required dependencies:
    ```
-   pip install -r requirements.txt
+   pip install streamlit pandas numpy scikit-learn streamlit-option-menu pillow
    ```
 
-3. Run the application:
+3. Run the enhanced application:
    ```
-   streamlit run main4.py
+   streamlit run app.py
+   ```
+   
+   Or run the alternative version:
+   ```
+   streamlit run main.py
    ```
 
 4. Access the application:
    Open your web browser and navigate to `http://localhost:8501`
 
 ### Model Files
-Place the following trained model files in the appropriate directories:
-- `models/diabetes_model.pkl`
-- `models/heart_model.pkl`
-- `models/LungCancer.pkl`
+Ensure the following trained model files are in the Models directory:
+- `Models/Diabetes.sav`
+- `Models/heart_disease_model.sav`
+- `Models/parkinsons_model.sav`
+- `Models/lungs_disease_model.sav`
+- `Models/Thyroid_model.sav`
 
 ## Usage Guide
 
-### Home Page
-- View the application overview and model status
-- Access educational information about disease prediction
+### Disease Selection
+1. Choose from five different disease prediction options
+2. Select either using the enhanced visual cards or the dropdown menu
+3. View disease-specific input forms and educational information
 
 ### Diabetes Prediction
-1. Navigate to "Diabetes Prediction" from the sidebar
-2. Enter patient health metrics including glucose, BMI, age, etc.
-3. Click "Predict Diabetes Risk" button
-4. View the prediction result, confidence level, and recommendations
-5. Access reference ranges for better interpretation
+1. Enter patient metrics including glucose levels, BMI, age, etc.
+2. View real-time BMI category assessment
+3. Submit for prediction results and risk factor analysis
+4. Access educational content about diabetes through the expandable section
 
 ### Heart Disease Prediction
-1. Navigate to "Heart Disease Prediction" from the sidebar
-2. Enter cardiac health parameters
-3. Click "Predict Heart Disease Risk" button
-4. Review prediction results and suggested next steps
+1. Input cardiovascular parameters including chest pain characteristics
+2. Review real-time cardiovascular risk assessment visualization
+3. Submit for prediction with personalized recommendations
+4. Access heart health information through the expandable section
+
+### Parkinson's Disease Prediction
+1. Enter voice analysis parameters organized by measure type
+2. Submit for prediction with detailed results
+3. Review educational content about voice analysis in Parkinson's detection
 
 ### Lung Cancer Prediction
-1. Navigate to "Lung Cancer Prediction" from the sidebar
-2. Answer questions about symptoms and risk factors
-3. Click "Predict Lung Cancer Risk" button
-4. Review results, identified risk factors, and recommendations
+1. Input patient information and risk factors
+2. Indicate symptom presence using Yes/No selections
+3. View dynamic risk assessment score and visualization
+4. Enable debug mode for technical insights if needed
+5. Access lung cancer information through the expandable section
+
+### Thyroid Function Assessment
+1. Enter laboratory values including TSH, T3, and T4 levels
+2. Review TSH level assessment visualization
+3. Submit for prediction with identified risk indicators
+4. Access thyroid function educational information
+
+## UI Enhancements
+
+The application features a significantly improved user interface with:
+
+- **Modern medical theme**: Professional color scheme with blue medical accents
+- **Animated loading**: Visual feedback during prediction calculations
+- **Risk visualization**: Dynamic progress bars and tagged risk factors
+- **Enhanced typography**: Improved readability with appropriate text sizing
+- **Card-based layout**: Clear visual organization of elements
+- **Interactive elements**: Hover effects and visual feedback
+- **Tooltips**: Contextual help for input parameters
+- **Responsive containers**: Adaptable layouts for different screen sizes
+- **Gradient styling**: Smooth color transitions for visual appeal
+- **Medical icons**: Distinct icons for each disease type
+- **Result highlight boxes**: Clear visual distinction between positive/negative results
 
 ## Model Performance
 
@@ -166,34 +226,32 @@ Place the following trained model files in the appropriate directories:
 - **Accuracy**: ~80% on validation data
 - **Key predictors**: Chest pain type, ST depression, Number of vessels
 
-### Lung Cancer Model
-- **Algorithm**: Gradient Boosting Classifier
+### Parkinson's Disease Model
+- **Algorithm**: XGBoost Classifier
 - **Accuracy**: ~85% on validation data
-- **Key predictors**: Smoking, Age, Coughing, Shortness of breath
+- **Key predictors**: Various voice parameter measurements
 
-## Development Process
+### Lung Cancer Model
+- **Algorithm**: Support Vector Machine
+- **Accuracy**: ~85% on validation data
+- **Key predictors**: Smoking, Age, Respiratory symptoms
 
-1. **Data Collection**: Gathered relevant medical datasets for each disease
-2. **Exploratory Data Analysis**: Analyzed features and distributions
-3. **Data Preprocessing**: Cleaned data and handled missing values
-4. **Feature Engineering**: Created additional relevant features
-5. **Model Selection**: Evaluated multiple algorithms for each disease
-6. **Hyperparameter Tuning**: Optimized model parameters
-7. **Model Evaluation**: Validated using cross-validation techniques
-8. **Model Deployment**: Integrated with Streamlit front-end
-9. **User Interface Development**: Created intuitive interface
-10. **Testing & Validation**: Verified predictions against expected outcomes
+### Thyroid Model
+- **Algorithm**: Random Forest Classifier
+- **Accuracy**: ~80% on validation data
+- **Key predictors**: TSH level, T4 level
 
 ## Future Enhancements
 
-- **Additional Disease Models**: Expand to include kidney disease, stroke risk assessment
-- **Patient History Tracking**: Enable saving and tracking predictions over time
-- **Advanced Visualizations**: Add interactive charts for risk factor relationships
-- **API Integration**: Connect with medical record systems
-- **Mobile Application**: Develop companion mobile app for on-the-go assessments
-- **Multi-language Support**: Add internationalization for global access
-- **Explainable AI**: Improve transparency of prediction rationale
-- **User Authentication**: Add secure login for healthcare professionals
+- **User accounts**: Save and track predictions over time
+- **PDF reports**: Generate downloadable health assessment reports
+- **Mobile optimization**: Dedicated mobile app version
+- **API integration**: Connect with medical record systems
+- **Additional disease models**: Expand to include more conditions
+- **Multilingual support**: Interface in multiple languages
+- **Advanced visualizations**: Interactive charts for risk factor relationships
+- **Telemedicine integration**: Connect with healthcare providers
+- **Wearable device integration**: Import data from fitness trackers and medical devices
 
 ## Contributing
 
@@ -211,4 +269,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Disclaimer
 
-This application is designed for educational and informational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+Health Guardian AI is designed for educational and informational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of qualified healthcare providers for any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read or seen in this application.
